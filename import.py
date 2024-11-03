@@ -1,61 +1,57 @@
 # 1. Import necessary libraries
 
-# pip install pyodbc
-# pip install pandas
-
 import pandas as pd 
 import requests
 from sqlalchemy import create_engine
 import urllib
+import time
 
 # 2. Set up API key and link
 
-API_KEY = '2e5728419e6e085790cba040a01e5467'
+API_KEY = API_KEY # To include your API key here
 CITY = 'Taipei'
 API_URL = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}"
 
 # 3. Fetch data from API 
+for _ in range(4):
 
-response = requests.get(API_URL)
-data = response.json()
+    response = requests.get(API_URL)
+    if response.status_code != 200:
+        print(f"Error fetching data: {response.status_code}")
+        continue
+    data = response.json()
 
 # 4. Process data
 
 
-weather_data = {
-    'city': CITY,
-    'temperature': data['main']['temp'],
-    'humidity': data['main']['humidity'],
-    'weather': data['weather'][0]['description'],
-    'timestamp': pd.Timestamp.now()
-}
+    weather_data = {
+        'city': CITY,
+        'temperature': data['main']['temp'],
+        'humidity': data['main']['humidity'],
+        'weather': data['weather'][0]['description'],
+        'timestamp': pd.Timestamp.now()
+    }
 
-df = pd.DataFrame([weather_data])
+    df = pd.DataFrame([weather_data])
 
-
-# Below are codes relevant for a local SQL server database (hosted in SSMS). Commented out as this is not necessary: 
-
-# params = urllib.parse.quote_plus(
-#     "DRIVER={ODBC Driver 17 for SQL Server};"
-#     "SERVER=TEO\SQLEXPRESS;"  # Adjust SERVER as needed (e.g., SERVER=.\SQLEXPRESS)
-#     "DATABASE=WeatherDB;"  # Replace with your database name
-#     "Trusted_Connection=yes;"
-# )
-
-# engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
 
 # Below are codes relevant for an Azure SQL database deployment:
 
-params = urllib.parse.quote_plus(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=serverfortesting.database.windows.net;"
-    "DATABASE=WeatherDB;"
-    "UID=administrator_test;"
-    "PWD=Database123;"
-)
+    params = urllib.parse.quote_plus(
+        "DRIVER={ODBC Driver 17 for SQL Server};"
+        "SERVER=SERVER.database.windows.net;" # Inlcude relevant information
+        "DATABASE=DATABASE;" # Inlcude relevant information
+        "UID=USERNAME;" # Inlcude relevant information
+        "PWD=PWD;" # Inlcude relevant information
+    )
 
-engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
+    engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
 
 # Load data into the SQL Server table. This snippet is relevant for local / cloud DB deployment
-df.to_sql('weather_data', engine, if_exists='append', index=False)
-print("Data loaded successfully")
+    try:
+        df.to_sql('weather_data', engine, if_exists='append', index=False)
+        print("Data loaded successfully")
+    except Exception as e:
+        print(f"Error loading data: {e}")
+    
+    time.sleep(30)
