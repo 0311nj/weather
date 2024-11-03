@@ -12,15 +12,15 @@ Develop a real-time weather pipeline that retrieves data from a public weather A
 
 ## Project Files:
 
-1. import.py
+1. `import.py`
 - This Python script is designed to fetch weather data from an API and subsequently load it into an Azure SQL Database.
 - The API allows us to extract weather data for a specific city of interest.
   
-2. Dockerfile
+2. `Dockerfile`
 - The Dockerfile is a script that outlines the instructions for building the Docker image, including customizations for the environment in which the application will run.
 - It contains the base image, necessary dependencies, and application code.
 
-3. docker-compose.yml
+3. `docker-compose.yml`
 - This file defines and manages the Docker application.
 - It is utilized to schedule the application to run at regular intervals (e.g., pulling data every 10 minutes over the course of 1 hour)
 
