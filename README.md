@@ -7,7 +7,6 @@ Develop a real-time weather pipeline that retrieves data from a public weather A
 - Data Ingestion: Python (using `requests` for API data fetching)
 - Data Storage: Azure SQL Database
 - Orchestration and Scheduling: Docker
-- Dashboarding: Power BI
 - Pre-requisites: Obtain an API key and set up Azure environments with Azure SQL Database to facilitate data ingestion
 
 ## Project Files:
@@ -31,6 +30,11 @@ Run the following commands:
 - `docker run --rm weather-pipeline`
 - `docker-compose build`
 - `docker-compose up`
+
+## Sample Output:
+
+![alt test](https://github.com/0311nj/weather/blob/40de6ec6140f739a1bd09b3ef694a83ada593823/sql%20DB.png)
+
 
 
   
