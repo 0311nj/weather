@@ -4,11 +4,11 @@ version: '3.8'
 services:
   weather-pipeline:
     build: 
-      context: .  # Specify the build context as the current directory
+      context: .  
     container_name: weather-pipeline  # Specify the container name
-    restart: "no"  # Prevent auto-restart after completion
+    restart: "no"  
     environment:
-      - API_KEY=2e5728419e6e085790cba040a01e5467
+      - API_KEY=API_KEY # include correct API KEY
 
     entrypoint: >
-      sh -c "for i in {1..6}; do python import.py; sleep 600; done"
+      sh -c "for i in {1..4}; do python import.py; sleep 30; done"
