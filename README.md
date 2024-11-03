@@ -21,7 +21,7 @@ Develop a real-time weather pipeline that retrieves data from a public weather A
 
 3. `docker-compose.yml`
 - This file defines and manages the Docker application.
-- It is utilized to schedule the application to run at regular intervals (e.g., pulling data every 10 minutes over the course of 1 hour)
+- It is utilized to schedule the application to run at regular intervals (e.g., pulling data every 30 seconds over the course of 2 minutes)
 
 
 ## Running the code snippets:
