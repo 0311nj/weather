@@ -1,4 +1,4 @@
-# Real-Time Weather Data Dashboard
+# Real-Time Weather Data Loading
 
 ## Objective: 
 Develop a real-time weather pipeline that retrieves data from a public weather API, processes this data, and loads it into a Azure SQL Server on a regular basis
