@@ -1,7 +1,7 @@
 # Real-Time Weather Data Dashboard
 
 ## Objective: 
-Develop a real-time weather pipeline that retrieves data from a public weather API, processes this data, and loads it into a cloud data warehouse. The project also includes the creation of a Power BI dashboard to visualize current weather conditions and trends.
+Develop a real-time weather pipeline that retrieves data from a public weather API, processes this data, and loads it into a Azure SQL Server on a regular basis
 
 ## Tech Stack:
 - Data Ingestion: Python (using `requests` for API data fetching)
